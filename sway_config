@@ -6,8 +6,10 @@
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
+font pango:Fira Sans SemiBold 9
+
+# Use Mod1 for Alt.
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -204,12 +206,14 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
+
+exec ~/.config/sway/weather.sh 
 bar {
     position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    status_command ~/.config/sway/bar.sh
 
     colors {
         statusline #ffffff
@@ -217,5 +221,16 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
+
+
+#### Volume controls
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+### Get weather report
+
+bindsym $mod+m exec foot --hold -e curl wttr.in/starkville
+
 
 include /etc/sway/config.d/*
