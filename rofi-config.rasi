@@ -1,0 +1,13 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ window, drun, run ];
+  background-color: #FF0000;
+border-color: rgba(0,0,1, 0.5);
+text-color: SeaGreen;
+}
+
+@theme "gruvbox-dark"
+
+entry {
+    placeholder: "what ya need boss?";
+}
