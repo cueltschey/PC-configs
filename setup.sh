@@ -22,3 +22,7 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 sudo apt install chromium-browser qutebrowser
 
 gh auth login
+gh extension install https://github.com/sarumaj/gh-gr
+gh extension install wuwe1/gh-ls
+gh extension install Link-/gh-token
+gh extension install gennaro-tedesco/gh-s
