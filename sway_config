@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+gaps inner 10
+
 ### Variables
 #
 font pango:Fira Sans SemiBold 9
@@ -30,7 +32,7 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /home/chasuelt/Downloads/bg.jpg fill
+output * bg /home/charles/Downloads/field_ghibli.jpg  fill
 #
 # Example configuration:
 #
@@ -75,6 +77,9 @@ exec redshift -O 2500K
 
     # Kill focused window
     bindsym $mod+Shift+q kill
+
+    # Shutdown computer
+    bindsym $mod+Shift+z exec foot --hold -e sudo shutdown now
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -218,8 +223,8 @@ bar {
     status_command ~/.config/sway/bar.sh
 
     colors {
-        statusline #ffffff
-        background #343434
+        statusline #aaffff
+        background #121212
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
@@ -234,5 +239,17 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 bindsym $mod+m exec foot --hold -e curl wttr.in/starkville
 
+set $cl_high #009ddc
+set $cl_indi #d9d8d8
+set $cl_back #231f20
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 include /etc/sway/config.d/*
