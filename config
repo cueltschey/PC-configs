@@ -208,7 +208,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
+bindsym $mod+Shift+N exec foot --hold -e alsamixer
 #
 # Status Bar:
 #
