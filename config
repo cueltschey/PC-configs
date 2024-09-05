@@ -32,8 +32,7 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/charles/Downloads/field_ghibli.jpg  fill
-#
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -208,7 +207,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+N exec foot --hold -e alsamixer
+
 #
 # Status Bar:
 #
