@@ -222,8 +222,8 @@ bar {
     status_command ~/.config/sway/bar.sh
 
     colors {
-        statusline #aaffff
-        background #121212
+        statusline #ffffff
+        background #111111
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
@@ -238,9 +238,9 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 bindsym $mod+m exec foot --hold -e curl wttr.in/starkville
 
-set $cl_high #009ddc
-set $cl_indi #d9d8d8
-set $cl_back #231f20
+set $cl_high #000000
+set $cl_indi #ffffff
+set $cl_back #ffffff
 set $cl_fore #d9d8d8
 set $cl_urge #ee2e24
 
