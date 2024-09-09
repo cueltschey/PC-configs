@@ -1,15 +1,12 @@
 while true; do
-	# $(cmd) stores the output of cmd
 	date=$(date +'%A, %b %d')
 	time=$(date +'%I:%M %p')
 	level=$(cat /sys/class/power_supply/BAT0/capacity)
 	status=$(cat /sys/class/power_supply/BAT0/status)
 
-	if [ "$status" = "Charging" ]; then
-		charge="🔋 $level%"
-	else
-		charge="⚡ $level%"
-	fi
-	echo " $date  $time  | $charge"
+	ps aux | grep "open" | grep -q "nrf" && open5gs="core: ✅" || open5gs="core: 🟥"
+	ps aux | grep "gnb" | grep -q "\-c" && gnb="gnb: ✅" || gnb="gnb: 🟥"
+	[ "$status" = "Charging" ] && charge="🔋 $level%" || charge="⚡ $level%"
+	echo "$gnb  $open5gs  $date  $time  | $charge"
 	sleep 1
 done

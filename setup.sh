@@ -1,9 +1,9 @@
-sudo apt update && upgrade -y
+apt update && upgrade -y
 
 # Setup foot sway and rofi
 mkdir -pv ~/.config/foot ~/.config/sway ~/.config/rofi/
 cp ./foot.ini ~/.config/foot/foot.ini
-sudo cp ./sway_config /etc/sway/config
+cp ./config /etc/sway/config
 cp ./rofi-config.rasi ~/.config/rofi/config.rasi
 
 swaymsg reload
