@@ -16,13 +16,16 @@ apt install make gcc snap cmake binutils bison gawk texinfo
 
 # configure nvim
 snap install nvim --classic
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+cat <EOF >>~/.bashrc
+export PATH="$PATH:/opt/nvim-linux64/bin"
+EOF
+
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 
 # install nice things
-sudo apt install chromium-browser qutebrowser fzf
-
-gh auth login
-gh extension install https://github.com/sarumaj/gh-gr
+sudo apt install chromium-browser
 gh extension install wuwe1/gh-ls
-gh extension install Link-/gh-token
-gh extension install gennaro-tedesco/gh-s
+gh auth login
