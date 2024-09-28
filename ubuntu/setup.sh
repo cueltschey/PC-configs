@@ -1,4 +1,4 @@
-sudo apt update && upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 # Install sway related packages
 sudo apt install -y swaybg swayidle swaylock waybar grimshot rofi
@@ -21,7 +21,7 @@ sudo mkdir -p -m 755 /etc/apt/keyrings && wget -qO- https://cli.github.com/packa
 # Install build tools
 sudo apt install -y make gcc snap cmake binutils bison gawk texinfo
 
-install-nvim.sh
+./ubuntu/install-nvim.sh
 
 # install browser
 sudo apt install -y chromium-browser
