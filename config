@@ -18,9 +18,10 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot 
+set $term kitty 
 
 bindsym $mod+Shift+P	exec grimshot --notify save area
+bindsym $mod+Shift+G	exec xdotool click 3
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -224,8 +225,7 @@ bar {
     colors {
         statusline #ffffff
         background #111111
-        inactive_workspace #aaaaaa #32323200 #aaaaaa
-	active_workspace #aaaaaa #ffaaaa #aaaaaa
+        inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
 
@@ -235,11 +235,14 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
+### Get weather report
+
+bindsym $mod+m exec foot --hold -e curl wttr.in/starkville
 
 set $cl_high #000000
 set $cl_indi #ffffff
-set $cl_back #343434
-set $cl_fore #ffffff
+set $cl_back #ffffff
+set $cl_fore #d9d8d8
 set $cl_urge #ee2e24
 
 

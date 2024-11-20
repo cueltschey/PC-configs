@@ -1,11 +1,11 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install sway related packages
-sudo apt install -y swaybg swayidle swaylock waybar grimshot rofi
+sudo apt install -y swaybg swayidle swaylock waybar grimshot rofi kitty
 
 # Setup foot sway and rofi
-mkdir -pv ~/.config/foot ~/.config/sway ~/.config/rofi/
-cp ./foot.ini ~/.config/foot/foot.ini
+mkdir -pv ~/.config/kitty ~/.config/sway ~/.config/rofi/
+cp ./kitty.conf ~/.config/kitty/kitty.conf
 sudo cp ./config /etc/sway/config
 cp ./rofi-config.rasi ~/.config/rofi/config.rasi
 
@@ -29,5 +29,3 @@ sudo apt install -y chromium-browser
 gh auth login
 gh extension install https://github.com/sarumaj/gh-gr
 gh extension install wuwe1/gh-ls
-gh extension install Link-/gh-token
-gh extension install gennaro-tedesco/gh-s
