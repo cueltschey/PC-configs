@@ -4,11 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-gaps inner 10
-
 ### Variables
 #
-font pango:Fira Sans SemiBold 9
+font pango:Hack 12
 
 # Use Mod1 for Alt.
 set $mod Mod1
@@ -21,7 +19,9 @@ set $right l
 set $term kitty 
 
 bindsym $mod+Shift+P	exec grimshot --notify save area
-bindsym $mod+Shift+G	exec xdotool click 3
+bindsym $mod+Shift+V exec wf-recorder -g "$(swaymsg -t get_outputs | jq -r '.[0].rect | .x,.y,.width,.height | @csv' | tr ',' ' ')" -f ~/Videos/screen-recording-$(date +'%Y%m%d-%H%M%S').mp4
+bindsym $mod+Shift+S exec pkill -INT wf-recorder
+
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -48,7 +48,6 @@ exec swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
           before-sleep 'swaylock -f -c 000000'
-exec redshift -O 2500K
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -73,7 +72,7 @@ exec redshift -O 2500K
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec $term -T="<kitty> \f $USER"
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -214,18 +213,22 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 
-exec ~/.config/sway/weather.sh 
 bar {
     position top
+    font Hack
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command ~/.config/sway/bar.sh
+    status_edge_padding 3
+    status_padding 5
+    mode hide
+    modifier $mod
+
 
     colors {
         statusline #ffffff
-        background #111111
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background #00000000
     }
 }
 
@@ -239,9 +242,9 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 bindsym $mod+m exec foot --hold -e curl wttr.in/starkville
 
-set $cl_high #000000
-set $cl_indi #ffffff
-set $cl_back #ffffff
+set $cl_high #002323
+set $cl_indi #000000
+set $cl_back #000000
 set $cl_fore #d9d8d8
 set $cl_urge #ee2e24
 
@@ -252,4 +255,4 @@ client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
-include /etc/sway/config.d/*
+exec swaybg -c '#000000'
