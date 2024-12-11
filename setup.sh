@@ -6,9 +6,10 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 for user in $(users); do
-	install -D -v --owner $user ./kitty.conf ~/.config/kitty/kitty.conf
-	install -D -v --owner $user ./rofi-config.rasi ~/.config/rofi/config.rasi
-	install -D -v --owner $user --mode +x ./bar.sh ~/.config/sway/
+	user_home=$(getent passwd $user | cut -d: -f6)
+	install -D -v --owner $user ./foot.ini $user_home/.config/foot/foot.ini
+	install -D -v --owner $user ./rofi-config.rasi $user_home/config/rofi/config.rasi
+	install -D -v --owner $user --mode +x ./bar.sh $user_home/.config/sway/
 done
 
 install -D -v --owner root ./config /etc/sway/config

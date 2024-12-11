@@ -11,7 +11,7 @@ set -x
 apt update && apt upgrade -y
 
 # Install sway related packages
-apt install -y swaybg swayidle swaylock waybar grimshot rofi kitty
+apt install -y swaybg swayidle swaylock waybar grimshot rofi foot
 swaymsg reload
 
 # Install gh cli

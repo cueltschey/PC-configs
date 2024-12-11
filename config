@@ -16,7 +16,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty 
+set $term foot 
 
 bindsym $mod+Shift+P	exec grimshot --notify save area
 bindsym $mod+Shift+V exec wf-recorder -g "$(swaymsg -t get_outputs | jq -r '.[0].rect | .x,.y,.width,.height | @csv' | tr ',' ' ')" -f ~/Videos/screen-recording-$(date +'%Y%m%d-%H%M%S').mp4
