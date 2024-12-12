@@ -3,10 +3,11 @@ while true; do
 	time=$(date +'%I:%M %p')
 	level=$(cat /sys/class/power_supply/BAT0/capacity)
 	status=$(cat /sys/class/power_supply/BAT0/status)
+	root_total=$(df -h | awk '$6 == "/"{print $4}')
+	root_used=$(df -h | awk '$6 == "/"{print $5}')
 
-	ps aux | grep "open" | grep -q "nrf" && open5gs="core: ✅" || open5gs="core: 🟥"
-	ps aux | grep "gnb" | grep -q "\-c" && gnb="gnb: ✅" || gnb="gnb: 🟥"
 	[ "$status" = "Charging" ] && charge="🔋 $level%" || charge="⚡ $level%"
-	echo "$gnb  $open5gs  $date  $time  | $charge"
+	echo "Disk: [ $root_total $root_used ]  $date  $time  Battery: [ $charge ]"
+
 	sleep 1
 done
