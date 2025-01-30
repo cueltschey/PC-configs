@@ -45,8 +45,8 @@ include /etc/sway/config-vars.d/*
 # Example configuration:
 #
 exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
-          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+          timeout 30000 'swaylock -f -c 000000' \
+          timeout 60000 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
           before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -215,7 +215,7 @@ bindsym $mod+r mode "resize"
 
 bar {
     position top
-    font Terminus
+    font Terminus 14
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
