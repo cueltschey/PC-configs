@@ -3,11 +3,9 @@ while true; do
 	time=$(date +'%I:%M %p')
 	level=$(cat /sys/class/power_supply/BAT0/capacity)
 	status=$(cat /sys/class/power_supply/BAT0/status)
-	root_total=$(df -h | awk '$6 == "/"{print $4}')
-	root_used=$(df -h | awk '$6 == "/"{print $5}')
 
 	[ "$status" = "Charging" ] && charge="🔋 $level%" || charge="⚡ $level%"
-	echo "Disk: [ $root_total $root_used ]  $date  $time  Battery: [ $charge ]"
+	echo "$date  $time  [ $charge ]"
 
 	sleep 1
 done

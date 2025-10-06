@@ -8,7 +8,7 @@ fi
 for user in $(users); do
 	user_home=$(getent passwd $user | cut -d: -f6)
 	install -D -v --owner $user ./foot.ini $user_home/.config/foot/foot.ini
-	install -D -v --owner $user ./rofi-config.rasi $user_home/config/rofi/config.rasi
+	install -D -v --owner $user ./config.rasi $user_home/config/rofi/config.rasi
 	install -D -v --owner $user --mode +x ./bar.sh $user_home/.config/sway/
 	rm -rf $user_home/.config/nvim
 	git clone https://github.com/cueltschey/neovim-config $user_home/.config/nvim
