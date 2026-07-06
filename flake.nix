@@ -10,13 +10,23 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+  outputs = { self, nixpkgs, ... }@inputs: let
+    inherit (builtins) readDir;
+    hosts = builtins.attrNames (readDir ./hosts);
+
+    mkSystem = hostname: nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs hostname; };
       modules = [
-        ./hosts/default/configuration.nix
+        ./hosts/${hostname}/configuration.nix
         inputs.home-manager.nixosModules.default
       ];
     };
+  in {
+    nixosConfigurations = builtins.listToAttrs (map
+      (hostname: {
+        name = hostname;
+        value = mkSystem hostname;
+      })
+      hosts);
   };
 }

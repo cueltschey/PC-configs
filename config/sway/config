@@ -219,7 +219,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command ~/.config/sway/bar.sh
+    status_command ~/.config/sway/statusCommand.sh
     status_edge_padding 3
     status_padding 5
     mode hide

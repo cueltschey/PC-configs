@@ -46,22 +46,25 @@
   };
 
   environment.systemPackages = with pkgs; [
+    bash
     vim
     git
     curl
+    ripgrep
     wget
     foot
     rofi
     swaybg
-    swayidle
-    swaylock
+    #swayidle
+    #swaylock
     waybar
     grim
-    grimshot
+    pkgs.sway-contrib.grimshot
     wf-recorder
     slurp
     jq
     chromium
+    librewolf
     gh
     tldr
     neovim
@@ -69,24 +72,10 @@
     cmake
     binutils
     docker
-    librewolf
     pulseaudio
+    pipewire
+    wireplumber
   ];
-
-  programs.sway = {
-    enable = true;
-    extraPackages = with pkgs; [
-      swaybg
-      swayidle
-      swaylock
-      waybar
-      grimshot
-      wf-recorder
-      slurp
-      foot
-      rofi
-    ];
-  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
