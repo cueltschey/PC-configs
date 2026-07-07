@@ -5,6 +5,14 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ];
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -35,8 +43,13 @@
   users.users."charles" = {
     isNormalUser = true;
     description = "charles";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "kvm" ];
     packages = with pkgs; [];
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
   };
 
   home-manager = {
@@ -71,11 +84,15 @@
     gcc
     cmake
     binutils
-    docker
+    dive
+    skopeo
     pulseaudio
     pipewire
     wireplumber
+    keepassxc
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

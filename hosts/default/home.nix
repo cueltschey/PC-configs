@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   home.username = "charles";
   home.homeDirectory = "/home/charles";
 
@@ -9,8 +11,6 @@
   home.packages = with pkgs; [
     bash
     curl
-    git
-    gh
     tldr
     neovim
     foot
@@ -28,13 +28,31 @@
     gcc
     cmake
     binutils
+    keepassxc
     terminus_font
+    android-tools
   ];
 
   home.sessionVariables = {
     BROWSER = "librewolf";
     EDITOR = "vim";
     GOPATH = "$HOME/go";
+  };
+
+  programs.git = {
+    enable = true;
+    settings = {
+      core.editor = "vim";
+      user.name = "Charles Ueltschey";
+      user.email = "me@cueltschey.com";
+    };
+  };
+
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+    };
   };
 
   home.file.".config/sway/statusCommand.sh" = {
@@ -73,7 +91,6 @@
         font = "Terminus:size=10";
         term = "foot";
         shell = "${pkgs.bash}/bin/bash";
-        colors = "dark";
       };
       colors-dark = {
         alpha = 1;
