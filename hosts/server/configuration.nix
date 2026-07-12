@@ -70,6 +70,7 @@
     dive
     skopeo
     gh
+    secretspec
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -102,10 +103,10 @@
   security.sudo.wheelNeedsPassword = true;
 
   # GNOME Keyring for secretspec secret storage (headless server)
+  # The module handles dbus service files and PAM for 'login'.
+  # sshd PAM integration is needed since there's no graphical login.
   services.gnome.gnome-keyring.enable = true;
-  services.dbus.sessionRequired = true;
   security.pam.services.sshd.enableGnomeKeyring = true;
-  security.pam.services.login.enableGnomeKeyring = true;
 
   system.stateVersion = "26.05";
 }
