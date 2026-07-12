@@ -5,6 +5,32 @@
     ./hardware-configuration.nix
   ];
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+      Experimental = true;
+      KernelExperimental = true;
+    };
+  };
+  services.blueman.enable = true;
+
+  boot.kernelModules = [ "btusb" "btintel" ];
+
+  security.rtkit.enable = true;
+
+  hardware.pulseaudio.enable = false;
+
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+  };
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -89,6 +115,9 @@
     pulseaudio
     pipewire
     wireplumber
+    pavucontrol
+    blueman
+    alsa-utils
     keepassxc
   ];
 

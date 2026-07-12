@@ -37,7 +37,10 @@
     BROWSER = "librewolf";
     EDITOR = "vim";
     GOPATH = "$HOME/go";
+    ANDROID_HOME = "${config.home.homeDirectory}/Android/Sdk";
   };
+
+  home.file."Android/Sdk/platform-tools/adb".source = "${pkgs.android-tools}/bin/adb";
 
   programs.git = {
     enable = true;
