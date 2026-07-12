@@ -101,5 +101,11 @@
 
   security.sudo.wheelNeedsPassword = true;
 
+  # GNOME Keyring for secretspec secret storage (headless server)
+  services.gnome.gnome-keyring.enable = true;
+  services.dbus.sessionRequired = true;
+  security.pam.services.sshd.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   system.stateVersion = "26.05";
 }
