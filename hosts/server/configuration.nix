@@ -91,7 +91,7 @@
     enable = true;
     maxretry = 5;
     bantime = "10m";
-    ignoreIP = "127.0.0.1/8 ::1";
+    ignoreIP = [ "127.0.0.1/8" "::1" ];
   };
 
   networking.firewall = {
