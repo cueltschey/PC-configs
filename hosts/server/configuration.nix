@@ -97,7 +97,13 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
+    allowedTCPPorts = [ 22 80 443 ];
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "chaseuelt@gmail.com";
+    certs."cueltschey.com".domain = "cueltschey.com";
   };
 
   security.sudo.wheelNeedsPassword = true;
