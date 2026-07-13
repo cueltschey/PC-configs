@@ -103,7 +103,10 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "chaseuelt@gmail.com";
-    certs."cueltschey.com".domain = "cueltschey.com";
+    certs."cueltschey.com" = {
+      domain = "cueltschey.com";
+      listenHTTP = "http://0.0.0.0:80";
+    };
   };
 
   security.sudo.wheelNeedsPassword = true;
