@@ -15,10 +15,15 @@
     };
   };
   services.blueman.enable = true;
+  services.syncthing.enable = true;
 
   boot.kernelModules = [ "btusb" "btintel" ];
 
   security.rtkit.enable = true;
+
+  # GNOME Keyring for secretspec secret storage
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   hardware.pulseaudio.enable = false;
 
@@ -44,6 +49,9 @@
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 22000 ];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 
   time.timeZone = "America/Chicago";
 
@@ -119,6 +127,7 @@
     blueman
     alsa-utils
     keepassxc
+    secretspec
   ];
 
   nixpkgs.config.allowUnfree = true;
