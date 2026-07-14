@@ -97,7 +97,8 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [ 22 80 443 22000 ];
+    allowedUDPPorts = [ 22000 21027 ];
   };
 
   # Certbot with DNS-01 challenge via IONOS API (supports wildcard certs)
